@@ -4,13 +4,15 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const app = express();
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
-app.get("/", function(req, res){
+app.get("/", function(req, res) {
   res.sendFile(__dirname + "/index.html");
 });
 
-app.post("/", function(req, res){
+app.post("/", function(req, res) {
   var num1 = Number(req.body.num1);
   var num2 = Number(req.body.num2);
   var sum = num1 + num2;
@@ -18,6 +20,10 @@ app.post("/", function(req, res){
   res.send("The result of the calculation is " + sum);
 });
 
-app.listen(3000, function(){
+app.get("/bmiCalculator", function(req, res){
+  res.sendFile(__dirname + "bmiCalculator.html");
+});
+
+app.listen(3000, function() {
   console.log("Server is running on port: 3000.");
 });

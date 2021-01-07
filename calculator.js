@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/index.html");
+  res.sendFile(__dirname + "/regularCalculator.html");
 });
 
 app.post("/", function(req, res) {
@@ -20,8 +20,16 @@ app.post("/", function(req, res) {
   res.send("The result of the calculation is " + sum);
 });
 
-app.get("/bmiCalculator", function(req, res){
-  res.sendFile(__dirname + "bmiCalculator.html");
+app.get("/bmi", function(req, res){
+  res.sendFile(__dirname + "/bmiCalculator.html");
+});
+
+app.post("/bmi", function(req, res){
+  var weight = parseFloat(req.body.weight);
+  var height = parseFloat(req.body.height);
+
+  var bmi = weight / (height * height);
+  res.send("Your BMI is " + bmi);
 });
 
 app.listen(3000, function() {
